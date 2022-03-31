@@ -1,0 +1,48 @@
+.form {
+  width: 30rem;
+  margin: 1rem auto 2rem;
+  background-color: azure;
+  color: black;
+  padding: 1rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  font:inherit;
+}
+
+.form input {
+  display: block;
+  margin: 0.5rem;
+  width: 70%;
+  font-size: 1rem;
+  border-color: transparent;
+  background-color: transparent;
+  border-bottom: 1px solid #ccc;
+}
+
+.form input:focus {
+    border:transparent;
+    outline: none;
+}
+
+.submitButton {
+    font-size: 1rem;
+    color:#ece9e9;
+    background-color: #2f3ce7;
+    border-radius: 0.5rem;
+    border:transparent;
+    padding:0.5rem 1rem;
+    margin:0.5rem;
+    cursor: pointer;
+}
+
+.submitButton:hover,
+.submitButton:active,
+.submitButton:focus {
+    background-color:#0513db;
+    border:transparent;
+}

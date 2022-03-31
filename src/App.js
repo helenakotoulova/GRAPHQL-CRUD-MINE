@@ -1,24 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  HttpLink,
+  from,
+} from "@apollo/client";
+// pro detekovani erroru v nasem api
+import { onError } from "@apollo/client/link/error";
+
+import GetUsers from "./Components/GetUsers";
+import Form from "./Components/Form";
+import ChangePassword from "./Components/ChangePassword";
+
+// error catching system
+const errorLink = onError(({ graphqlErrors, networkError }) => {
+  if (graphqlErrors) {
+    graphqlErrors.map(({ message, location, path }) => {
+      alert(`Graphql error: ${message}`);
+    });
+  }
+});
+
+const link = from([
+  errorLink,
+  new HttpLink({
+    uri: "http://localhost:4004/graphql",
+  }),
+]);
+
+const client = new ApolloClient({
+  //uri:"http://localhost:4004/graphql",
+  link: link,
+  cache: new InMemoryCache(),
+  //fetchOptions: { mode: "no-cors" },
+});
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ApolloProvider client={client}>
+      <h1 style={{fontFamily:'inherit', margin:'1rem auto 0', width:'fit-content'}}>Our Users!</h1>
+      <Form />
+      <GetUsers />
+      <ChangePassword />
+    </ApolloProvider>
   );
 }
 

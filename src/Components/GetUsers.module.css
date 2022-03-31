@@ -1,0 +1,10 @@
+.list {
+  text-align: center;
+}
+
+.list li {
+  width: fit-content;
+  margin-left: 25%;
+  cursor: pointer;
+  margin-top: 1rem;
+}
